@@ -1,0 +1,21 @@
+// This is used to determine what the proper modifier is for a statistic (based on default D&D 5e rules)
+
+// parameters:
+// attr: The value of the statistic (e.g. 5, 12, 20)
+// dice: The type of dice that should be rolled. This defaults to 20, but presumably could be something else?
+// show: determines if value should show only the modifier (e.g. "+5", "-1") or if it should be formatted as "1d20+5" in a roller.
+
+{% macro attrModifier( attr, dice = '20', show = false ) %}
+  {% import _self as macros %}
+  {% set sign = attr >= 10 ? '+' : '-' %}
+  {% set mod = ((attr - 10) / 2) |round(0, 'floor') %}
+  {% if  mod is defined  %}
+    {% if show == false %}
+			[roll:1d{{dice}}{{attr >= 10 ? sign}}{{ mod }}|{{ attr >= 10 ? sign }}{{ mod }}] 
+    {% else %}
+			[roll:1d{{dice}}{{sign}}{{ mod }}|1d{{dice}}{{sign}}{{mod}}] 
+    {% endif %}
+  {% else %}   
+		[roll:1d20}|0]
+  {% endif %}
+{% endmacro %}
