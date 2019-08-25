@@ -1,0 +1,95 @@
+<div class="sw5e-block sw5e-item-create">
+  <div class="header">
+    <div class="sw5e-input-group">
+      <input class="form-control transparent-input text-dark" type="text" placeholder="Power Name"
+        value="{{ variables.name is defined ? variables.name }}" name="name" required="required" />
+    </div>
+  </div>
+  <div class="values">
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="power_level">Power Level</label>
+        <select name="power_level" class="form-control">
+          <option value="At-Will" {{ variables.power_level=='At-Will' ? ' selected' }}>At-Will</option>
+          <option value="1st Level" {{ variables.power_level=='1st Level' ? ' selected' }}>1st Level</option>
+          <option value="2nd Level" {{ variables.power_level=='2nd Level' ? ' selected' }}>2nd Level</option>
+          <option value="3rd Level" {{ variables.power_level=='3rd Level' ? ' selected' }}>3rd Level</option>
+          <option value="4th Level" {{ variables.power_level=='4th Level' ? ' selected' }}>4th Level</option>
+          <option value="5th Level" {{ variables.power_level=='5th Level' ? ' selected' }}>5th Level</option>
+          <option value="6th Level" {{ variables.power_level=='6th Level' ? ' selected' }}>6th Level</option>
+          <option value="7th Level" {{ variables.power_level=='7th Level' ? ' selected' }}>7th Level</option>
+          <option value="8th Level" {{ variables.power_level=='8th Level' ? ' selected' }}>8th Level</option>
+          <option value="9th Level" {{ variables.power_level=='9th Level' ? ' selected' }}>9th Level</option>
+        </select>
+      </div>
+      <div class="form-group col-md-6">
+        <label for="power_type">Power Type</label>
+        <select name="power_type" class="form-control">
+          <option value="Force" {{ variables.power_type=='Force' ? ' selected' }}>Force</option>
+          <option value="Tech" {{ variables.power_type=='Tech' ? ' selected' }}>Tech</option>
+        </select>
+      </div>
+      <div class="form-group col-md-6">
+        <label for="spell_type">Spell Type</label>
+        <select name="spell_type" class="form-control">
+          <option value="Single Target Attack" {{ variables.spell_type=='Single Target Attack' ? ' selected' }}>Single
+            Target Attack</option>
+          <option value="AOE Attack" {{ variables.spell_type=='AOE Attack' ? ' selected' }}>AOE Attack</option>
+          <option value="Multiple Target Attack" {{ variables.spell_type=='Multiple Target Attack' ? ' selected' }}>
+            Multiple Target Attack</option>
+          <option value="Self Buff" {{ variables.spell_type=='Self Buff' ? ' selected' }}>Self Buff</option>
+          <option value="Single Target Buff" {{ variables.spell_type=='Single Target Buff' ? ' selected' }}>Single
+            Target Buff</option>
+          <option value="Multiple Target Buff" {{ variables.spell_type=='Multiple Target Buff' ? ' selected' }}>Multiple
+            Target Buff</option>
+          <option value="AOE Buff" {{ variables.spell_type=='AOE Buff' ? ' selected' }}>AOE Buff</option>
+          <option value="Single Target Debuff" {{ variables.spell_type=='Single Target Debuff' ? ' selected' }}>Single
+            Target Debuff</option>
+          <option value="Multiple Target Debuff" {{ variables.spell_type=='Multiple Target Debuff' ? ' selected' }}>
+            Multiple Target Debuff</option>
+        </select>
+      </div>
+      <div class="form-group col-md-6">
+        <label for="attack_type">Attack Type</label>
+        <select name="attack_type" class="form-control">
+          <option value="Melee Attack" {{ variables.attack_type=='Melee Attack' ? ' selected' }}>Melee Attack</option>
+          <option value="Ranged Attack" {{ variables.attack_type=='Ranged Attack' ? ' selected' }}>Ranged Attack
+          </option>
+          <option value="CHA Save" {{ variables.attack_type=='CHA Save' ? ' selected' }}>CHA Save</option>
+          <option value="CON Save" {{ variables.attack_type=='CON Save' ? ' selected' }}>CON Save</option>
+          <option value="DEX Save" {{ variables.attack_type=='DEX Save' ? ' selected' }}>DEX Save</option>
+          <option value="INT Save" {{ variables.attack_type=='INT Save' ? ' selected' }}>INT Save</option>
+          <option value="STR Save" {{ variables.attack_type=='STR Save' ? ' selected' }}>STR Save</option>
+          <option value="WIS Save" {{ variables.attack_type=='WIS Save' ? ' selected' }}>WIS Save</option>
+        </select>
+      </div>
+      <div class="form-group col-md-6">
+        <label for="casting_time">Casting Time</label>
+        <input type="text" class="form-control" name="casting_time" placeholder="Time to cast (actions or minutes etc)" value="{{ variables.casting_time is defined ? variables.casting_time }}">
+      </div>
+      <div class="form-group col-md-6">
+        <label for="duration">Duration</label>
+        <input type="text" class="form-control" name="duration" placeholder="Duration (or instantaneous)" value="{{ variables.duration is defined ? variables.duration }}">
+      </div>
+      <div class="form-group col-md-6">
+        <label for="range">Range</label>
+        <input type="number" class="form-control" name="range" placeholder="Spell Range" value="{{ variables.range is defined ? variables.range }}">
+      </div>
+      <div class="form-group col-md-6">
+        <label for="concentration">Is Concentration Required?</label>
+        <select name="concentration" class="form-control">
+          <option value="No" {{ variables.concentration=='No' ? ' selected' }}>No</option>
+          <option value="Yes" {{ variables.concentration=='Yes' ? ' selected' }}>Yes</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-row">
+      <label for="description">Description</label>
+      <textarea rows="5" class="form-control" name="description" placeholder="Spell Description">{{ variables.description is defined ? variables.description }}</textarea>
+    </div>
+    <div class="form-row">
+      <label for="potency_effect">Potency Effect</label>
+      <textarea rows="5" class="form-control" name="potency_effect" placeholder="Potency Effect (if any)">{{ variables.potency_effect is defined ? variables.potency_effect }}</textarea>
+    </div>
+  </div>
+</div>

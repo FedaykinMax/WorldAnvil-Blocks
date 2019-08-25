@@ -1,0 +1,110 @@
+.sw5e-block {
+  --primary: #afc6d6;
+  --redText: #c40f0f;
+  --primary-dark: #69b5d0;
+  --border-color: green;
+  --sub-border: purple;
+  --subtitle-color: slategray;
+}
+
+.sw5e-block {
+  border: 1px solid var(--redText);
+  background-color: var(--primary) ;
+  padding: 8pt;
+
+  .flex-row {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .flex-list {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .separator {
+    border-color: var(--redText) ;
+    border-width: 3px;
+  }
+  
+  .subheading {
+    font-size: 14px;
+  }
+
+  .header {
+    .transparent-input {
+      font-size: 25px !important;
+      background-color: transparent !important;
+      border: none;
+    }
+
+    input::placeholder {
+      color: black!important;
+      font-size: 1.3em;
+      line-height: 1.3em;
+      text-transform: uppercase;
+    }
+  }
+
+  .overview-block {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .single-line-value {
+    .field-name {
+      margin-right: 3px;
+    }
+  }
+
+  .attributes-block {
+    margin: 10pt 0;
+
+    .attribute {
+      align-items: center;
+      margin-right: 10pt;
+    }
+  }
+
+  .action-block {
+    padding: 10pt 0;
+    .action-name {
+      text-transform: none;
+      font-size: 18px;
+      border-bottom: 1px solid var(--redText);
+    }
+  }
+
+  &.sw5e-foe-create {
+    .attributes-section {
+
+      .attribute-row {
+        margin: 5pt 0;
+        justify-content: space-evenly;
+
+        label {
+          font-weight: bold;
+          margin-bottom: 0;
+        }
+      }
+    }
+    .attr-edit {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-right: 5pt;
+      background-color: aliceblue;
+      padding: 5pt;
+      border-radius: 10pt;
+      
+      .form-control {
+        background-color: transparent;
+        border: none;
+        justify-content: center;
+        text-align: center;
+        font-size: 18px;
+        width: 100px;
+      }
+    }
+  }
+}

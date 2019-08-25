@@ -1,0 +1,70 @@
+<div class="sw5e-block">
+	<h1 class="block-title">{{ variables.name }}</h1>
+	<hr class="separator" />
+  <div class="class-feature-block section-block flex-row">
+		<div class="hit-points">
+			<section class="raised-section">
+				<h3>Hit Points</h3>
+				<div>
+					<span><strong>Hit Dice:</strong> {{ variables.hit_dice }}</span>
+				</div>
+				<div>
+					<span><strong>Hit Points at First Level:</strong> {{ variables.hp_level_one }}</span>
+				</div>
+				<div>
+					<span><strong>Hit Points at Higher Levels:</strong> {{ variables.hp_higher_levels }}</span>
+				</div>
+			</section>
+		</div>
+		<div class="proficiencies">
+			<h3>Proficiencies</h3>
+				<div>
+					<span><strong>Armor:</strong> {{ variables.armor_proficiencies }}</span>
+				</div>
+				<div>
+					<span><strong>Weapons:</strong> {{ variables.weapon_proficiencies }}</span>
+				</div>
+				<div>
+					<span><strong>Tools:</strong> {{ variables.tool_proficiencies }}</span>
+				</div>
+				<div>
+					<span><strong>Saving Throws:</strong> {{ variables.proficient_saving_throws }}</span>			
+				</div>
+				<div>
+					<span><strong>Skills:</strong> {{ variables.skill_options }}</span>
+				</div>
+		</div>
+	</div>
+	{% if variables.overview is defined %}
+		<section class="feature-section">
+			<h1 class="section-title">Overview and Creation</h1>
+			<div class="section-content"> {{ variables.overview}} </div>
+		</section>
+	{% endif %}
+	{% if variables.starting_equipment_options is defined %}
+	<section class="feature-section">
+		<h2 class="subheading">Starting Equipment Options</h2>
+		<div class="section-content"> {{ variables.starting_equipment_options}} </div>
+	</section>
+	{% endif %}
+	{% if variables.spellcasting is defined %}
+	<section class="feature-section">
+		<h2 class="section-title">Spellcasting</h2>
+		<div class="section-content"> {{ variables.spellcasting}} </div>
+	</section>
+	{% endif %}
+	{% if variables.class_features is defined %}
+	<section class="feature-section">
+		<h2 class="section-title">Class Features</h2>
+		<div class="section-content"> {{ variables.class_features}} </div>
+	</section>
+	{% endif %}
+	{% if variables.levels is defined %}
+		<dd> {{ variables.levels|ParseTable}} </dd>
+	{% endif %}
+
+	{% if variables.subclasses is defined %}
+	<dt>Subclasses</dt>
+	<dd> {{ variables.subclasses}} </dd>
+{% endif %}
+</div>

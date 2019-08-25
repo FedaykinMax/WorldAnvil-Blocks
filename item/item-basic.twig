@@ -1,0 +1,59 @@
+<div class="sw5e-block">
+	<h1 class="item-name">{{ variables.name }}</h1>
+  <h4 class="subheading">
+    {{ variables.rarity}} - {{ variables.type }}
+  </h4>
+  <hr class="separator" />
+    	{% if variables.type == 'Armor' %}
+    <section class="armor-heading">
+      <div>{{ variables.armor_type}} Armor</div>
+      <span><strong>Armor Class:</strong> {{ variables.armor_class}}</span>
+    </section>
+    {% if variables.required_strength %}
+      <dt>Required Strength</dt>
+      <dd> {{ variables.required_strength}} </dd>
+    {% endif %}
+  {% elseif variables.type == "Weapon" %}
+		<section class="weapon-type">
+      <span><strong>{{ variables.weapon_type}}</strong></span>
+        {% if "Blaster" in variables.weapon_type %}
+          <span> - {{ variables.range }}</span>
+        {% endif %}
+    </section>
+    {% if variables.required_strength %}
+      <dt>Required Strength</dt>
+      <dd> {{ variables.required_strength}} </dd>
+    {% endif %}
+    <dd> {{ variables.damage}} {{ variables.damage_type}} Damage </dd>
+    {% if variables.properties is defined %}
+      <dd> {{ variables.properties}} </dd>
+    {% endif %}
+  {% else %}
+    generic item
+	{% endif %}
+		<p> {{ variables.description}} </p>
+  {% if variables.rarity != 'Standard' %}
+    this is an enhanced item
+    {% if variables.requires_attunement is defined %}
+      <dt>Requires Attunement</dt>
+      <dd> {{ variables.requires_attunement}} </dd>
+    {% endif %}
+  
+    {% if variables.modifications is defined %}
+      <dt>Modifications</dt>
+      <dd> {{ variables.modifications}} </dd>
+    {% endif %}
+    {% if variables.available_modification_slots is defined %}
+      <dt>Available Modification Slots</dt>
+      <dd> {{ variables.available_modification_slots}} </dd>
+    {% endif %}
+  {% endif %}
+  <div class="minor-value">
+    <span class="value-name">Value:</span>
+    <span>{{ variables.value}}</span>
+  </div>
+  <div class="minor-value">
+    <span class="value-name">Weight:</span>
+    <span>{{ variables.weight }}</span>
+  </div>
+</div>

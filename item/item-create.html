@@ -1,0 +1,150 @@
+<div class="sw5e-block sw5e-item-create">
+    <div class="header">
+      <div class="sw5e-input-group">
+        <input class="form-control transparent-input text-dark" type="text"
+          placeholder="Item Name"
+          value="{{ variables.name is defined ? variables.name }}" name="name" required="required" />
+      </div>
+    </div>
+    <ul class="nav nav-tabs tabbed-area" id="myTab" role="tablist">
+        <li class="nav-item">
+          <a class="nav-link active" id="general-tab" data-toggle="tab" href="#general" role="tab" aria-controls="general" aria-selected="true">General</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="weapons-tab" data-toggle="tab" href="#weapons" role="tab" aria-controls="weapons" aria-selected="false">Weapons</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="armor-tab" data-toggle="tab" href="#armor" role="tab" aria-controls="armor" aria-selected="false">Armor</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="modifications-tab" data-toggle="tab" href="#modifications" role="tab" aria-controls="modifications" aria-selected="false">Modifications</a>
+        </li>
+      </ul>
+      <div class="tab-content shadow-lg p-3 mb-5" id="myTabContent">
+        <div class="tab-pane fade show active" id="general" role="tabpanel" aria-labelledby="general-tab">
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="type">Item Type</label>
+              <select name="type" class="form-control">
+                <option value="Weapon" {{ variables.type=='Weapon' ? ' selected' }}>Weapon</option>
+                <option value="Armor" {{ variables.type=='Armor' ? ' selected' }}>Armor</option>
+                <option value="Shield" {{ variables.type=='Shield' ? ' selected' }}>Shield</option>
+                <option value="Techpad" {{ variables.type=='Techpad' ? ' selected' }}>Techpad</option>
+                <option value="Force Focus" {{ variables.type=='Force Focus' ? ' selected' }}>Force Focus</option>
+                <option value="-" disabled>-------</option>
+                <option value="Ammunition" {{ variables.type=='Ammunition' ? ' selected' }}>Ammunition</option>
+                <option value="Communications" {{ variables.type=='Communications' ? ' selected' }}>Communications</option>
+                <option value="Data Recording" {{ variables.type=='Data Recording' ? ' selected' }}>Data Recording</option>
+                <option value="Explosive" {{ variables.type=='Explosive' ? ' selected' }}>Explosive</option>
+                <option value="Life Support" {{ variables.type=='Life Support' ? ' selected' }}>Life Support</option>
+                <option value="Medical" {{ variables.type=='Medical' ? ' selected' }}>Medical</option>
+                <option value="Supply" {{ variables.type=='Supply' ? ' selected' }}>Supply</option>
+                <option value="Utility" {{ variables.type=='Utility' ? ' selected' }}>Utility</option>
+                <option value="Accessory" {{ variables.type=='Accessory' ? ' selected' }}>Accessory</option>
+                <option value="Toolset" {{ variables.type=='Toolset' ? ' selected' }}>Toolset</option>
+                <option value="Trade Good"> {{ variables.type=='Trade Good' ? ' selected' }}Trade Good</option>
+              </select>
+            </div>
+            <div class="form-group col-md-6">
+              <label for="rarity">Rarity</label>
+              <select name="rarity" class="form-control">
+                <option value="Standard" {{ variables.rarity=='Standard' ? ' selected' }}>Standard</option>
+                <option value="Premium" {{ variables.rarity=='Premium' ? ' selected' }}>Premium</option>
+                <option value="Prototype" {{ variables.rarity=='Prototype' ? ' selected' }}>Prototype</option>
+                <option value="Legendary" {{ variables.rarity=='Legendary' ? ' selected' }}>Legendary</option>
+                <option value="Artifact" {{ variables.type=='Artifact' ? ' selected' }}>Artifact</option>
+              </select>
+            </div>
+          </div>
+          <div class="sw5e-input-group">
+            <label for="description">Description</label>
+            <textarea class="form-control" rows="5" name="description">{{ variables.description is defined ? variables.description }}</textarea>
+          </div>
+          <div class="sw5e-input-group">
+            <label for="properties">Additional Properties</label>
+            <textarea class="form-control" rows="2" name="properties"
+              placeholder="Additional Properties (such as weapon properties like 'finesse' or armor properties like 'disadvantage on stealth)'">
+              {{ variables.properties is defined ? variables.properties }}
+            </textarea>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="value">Item Value</label>
+              <input type="text" class="form-control" name="value" placeholder="Value (in credits)"
+                value="{{ variables.value is defined ? variables.value }}">
+            </div>
+            <div class="form-group col-md-6">
+              <label for="weight">Weight</label>
+              <input type="number" class="form-control" name="weight" placeholder="Weight"
+                value="{{ variables.weight is defined ? variables.weight }}">
+            </div>
+          </div>
+        </div>
+        <div class="tab-pane fade" id="weapons" role="tabpanel" aria-labelledby="weapons-tab">
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                  <label for="weight">Weapon Type</label>
+                  <select name="weapon_type" class="form-control">
+                    <option value="Simple Blaster" {{ variables.weapon_type =='Simple Blaster' ? ' selected' }}>Simple Blaster</option>
+                    <option value="Martial Blaster" {{ variables.weapon_type=='Martial Blaster' ? ' selected' }}>Martial Blaster</option>
+                    <option value="Simple Vibroweapon" {{ variables.weapon_type=='Simple Vibroweapon' ? ' selected' }}>Simple Vibroweapon</option>
+                    <option value="Martial Vibroweapon" {{ variables.weapon_type=='Martial Vibroweapon' ? ' selected' }}>Martial Vibroweapon</option>
+                    <option value="Simple Lightweapon" {{ variables.weapon_type=='Simple Lightweapon' ? ' selected' }}>Simple Lightweapon</option>
+                    <option value="Martial Lightweapon" {{ variables.weapon_type=='Martial Lightweapon' ? ' selected' }}>Martial Lightweapon</option>
+                  </select>
+                </div>
+                <div class="form-group col-md-4">
+                  <label for="damage">Damage</label>
+                  <input type="text" class="form-control" name="damage" placeholder="Damage done (you can format as [roll:1d6] to show a dice roller)"
+                    value="{{ variables.damage is defined ? variables.damage }}">
+                </div>
+                <div class="form-group col-md-4">
+                  <label for="weight">Damage Type</label>
+                  <select name="damage_type" class="form-control">
+                    <option value="Acid" {{ variables.damage_type=='Acid' ? ' selected' }}>Acid</option>
+                    <option value="Cold" {{ variables.damage_type=='Cold' ? ' selected' }}>Cold</option>
+                    <option value="Energy" {{ variables.damage_type=='Energy' ? ' selected' }}>Energy</option>
+                    <option value="Fire" {{ variables.damage_type=='Fire' ? ' selected' }}>Fire</option>
+                    <option value="Force" {{ variables.damage_type=='Force' ? ' selected' }}>Force</option>
+                    <option value="Ion" {{ variables.damage_type=='Ion' ? ' selected' }}>Ion</option>
+                    <option value="Kinetic" {{ variables.damage_type=='Kinetic' ? ' selected' }}>Kinetic</option>
+                    <option value="Lightning" {{ variables.damage_type=='Lightning' ? ' selected' }}>Lightning</option>
+                    <option value="Necrotic" {{ variables.damage_type=='Necrotic' ? ' selected' }}>Necrotic</option>
+                    <option value="Poison" {{ variables.damage_type=='Poison' ? ' selected' }}>Poison</option>
+                    <option value="Psychic" {{ variables.damage_type=='Psychic' ? ' selected' }}>Psychic</option>
+                    <option value="Sonic" {{ variables.damage_type=='Sonic' ? ' selected' }}>Sonic</option>
+                  </select>
+                </div>
+                <div class="form-group col-md-4">
+                  <label for="range">Range</label>
+                  <input type="text" class="form-control" name="range" placeholder="Range (e.g. 30/120)"
+                    value="{{ variables.range is defined ? variables.range }}">
+                </div>
+              </div>
+        </div>
+        <div class="tab-pane fade" id="armor" role="tabpanel" aria-labelledby="armor-tab">
+          <div class="sw5e-input-group form-group">
+            <label for="armor_type">Armor Type</label>
+            <select name="armor_type" class="form-control">
+              <option value="Light" {{ variables.armor_type=='Light' ? ' selected' }}>Light</option>
+              <option value="Medium" {{ variables.armor_type=='Medium' ? ' selected' }}>Medium</option>
+              <option value="Heavy" {{ variables.armor_type=='Heavy' ? ' selected' }}>Heavy</option>
+            </select>
+          </div>
+          <div class="sw5e-input-group">
+              <label for="armor_class">Armor Class</label>
+              <input class="form-control" type="text" value="{{ variables.armor_class is defined ? variables.armor_class }}"
+                placeholder="Armor Class and max DEX Bonus (e.g. 13 + Max 2 DEX)" name="armor_class" />
+          </div>
+          <div class="sw5e-input-group">
+            <label for="required_strength">Required Strength</label>
+            <input class="form-control" type="number" value="{{ variables.required_strength is defined ? variables.required_strength }}"
+              placeholder="Strength Required to wield this. Leave empty if no requirement" name="required_strength" />
+          </div>
+        </div>
+        <div class="tab-pane fade" id="modifications" role="tabpanel" aria-labelledby="modifications-tab">
+            Coming soon! Ping @Maximus13 in discord if you need this :)
+        </div>
+      </div>
+  
+  </div>

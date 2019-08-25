@@ -1,0 +1,26 @@
+{% block body %}
+<div class="sw5e-block">
+<h1 class="power-name">{{variables.name }}</h1>
+<p class="subheading">
+	<strong>{% if variables.power_level %}{{variables.power_level }}{% endif %}</strong>
+	{% if variables.power_type %}{{ variables.power_type }}{% endif %} 
+    Power
+</p>
+<hr class="separator" />
+{% if variables.casting_time %}
+	<div class="statblock-stat"><strong>Casting Time</strong> <span>{% if variables.concentration is defined and variables.concentration == 'Yes' %} Concentration, {% endif %}  {{ variables.casting_time}} </span></div>
+{% endif %}
+{% if variables.range %}
+	<div class="statblock-stat"><strong>Range</strong> <span> {{ variables.range }}</span></div>
+{% endif %}
+{% if variables.duration %}
+	<div class="statblock-stat"><strong>Duration</strong> <span> {{ variables.duration }}</span></div>
+{% endif %}
+<p class="description">
+	{% if variables.description %}
+		{{variables.description}}
+	{% endif %} 
+{% if variables.potency_effect %} <br><strong>Potency Effect: </strong>{{variables.potency_effect }}{% endif %} 
+</p>
+</div>
+{% endblock %}

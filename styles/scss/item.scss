@@ -1,0 +1,70 @@
+.sw5e-item-create {
+
+  .header {
+    .transparent-input {
+      font-size: 25px !important;
+      background-color: transparent !important;
+      border: none;
+
+    }
+  }
+
+  .sw5e-input-group {
+    input::placeholder {
+      color: black!important;
+      font-size: 1.3em;
+      line-height: 1.3em;
+      text-transform: uppercase;
+  }
+
+  .tabbed-area {
+    margin-top: 10pt;
+
+    label {
+      color: #ffffff;
+    }
+  }
+    .tab-content {
+      border: 1px solid red;
+      padding: 5pt;
+
+      label {
+        color: #ffffff;
+      }
+    }
+
+    .nav-item {
+      .nav-link {
+        color: #000000;
+      }
+      &:hover {
+        background-color: #69b5d0;
+      }
+    }
+} 
+
+// too lazy to move this back right now
+.sw5e-item-create .header .transparent-input {
+  font-size: 25px !important;
+  background-color: transparent !important;
+  border: none;}
+.sw5e-item-create .tabbed-area {
+  margin-top: 10pt;}
+.sw5e-item-create .tab-content label {
+    color: #000000;}
+.sw5e-item-create .tab-content {
+  padding: 5pt;}
+.sw5e-item-create .nav-item .nav-link {
+  color: #000000;}
+.sw5e-item-create .nav-item:hover {
+  background-color: #69b5d0;}
+.transparent-input::placeholder {
+        color: black!important;
+        font-size: 1.3em;
+        line-height: 1.3em;}
+.nav-tabs .nav-item.show .nav-link,  .nav-tabs .nav-link.active {
+  background-color: #69b5d0;
+  border: 0;}
+.nav-tabs {
+  border-bottom: 0;}
+}

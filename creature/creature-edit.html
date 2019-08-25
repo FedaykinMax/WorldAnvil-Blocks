@@ -1,0 +1,180 @@
+<div class="sw5e-block sw5e-foe-create">
+  <div class="header">
+    <div class="sw5e-input-group">
+      <input class="form-control transparent-input text-dark" type="text"
+        placeholder="Foe Name"
+        value="{{ variables.name is defined ? variables.name }}" name="name" required="required" />
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="col-md-4">
+      <label for="size">Size</label>
+      <select name="size" class="form-control">
+        <option value="Tiny" {{ variables.size=='Tiny' ? ' selected' }}>Tiny</option>
+        <option value="Small" {{ variables.size=='Small' ? ' selected' }}>Small</option>
+        <option value="Medium" {{ variables.size=='Medium' ? ' selected' }}>Medium</option>
+        <option value="Large" {{ variables.size=='Large' ? ' selected' }}>Large</option>
+        <option value="Huge" {{ variables.size=='Huge' ? ' selected' }}>Huge</option>
+        <option value="Gargantuan" {{ variables.size=='Gargantuan' ? ' selected' }}>Gargantuan</option>
+      </select>
+    </div>
+    <div class="col-md-4">
+      <label for="alignment">Alignment</label>
+      <select name="alignment" class="form-control">
+        <option value="Unaligned" {{ variables.alignment=='Unaligned' ? ' selected' }}>Unaligned</option>
+        <option value="Any Light" {{ variables.alignment=='Any Light' ? ' selected' }}>Any Light</option>
+        <option value="Any Dark" {{ variables.alignment=='Any Dark' ? ' selected' }}>Any Dark</option>
+        <option value="Lawful Light" {{ variables.alignment=='Lawful Light' ? ' selected' }}>Lawful Light</option>
+        <option value="Lawful Balanced" {{ variables.alignment=='Lawful Balanced' ? ' selected' }}>Lawful Balanced</option>
+        <option value="Lawful Dark" {{ variables.alignment=='Lawful Dark' ? ' selected' }}>Lawful Dark</option>
+        <option value="Neutral Light" {{ variables.alignment=='Neutral Light' ? ' selected' }}>Neutral Light</option>
+        <option value="Neutral Balanced" {{ variables.alignment=='Neutral Balanced' ? ' selected' }}>Neutral Balanced</option>
+        <option value="Neutral Dark" {{ variables.alignment=='Neutral Dark' ? ' selected' }}>Neutral Dark</option>
+        <option value="Chaotic Light" {{ variables.alignment=='Chaotic Light' ? ' selected' }}>Chaotic Light</option>
+        <option value="Chaotic Balanced" {{ variables.alignment=='Chaotic Balanced' ? ' selected' }}>Chaotic Balanced</option>
+        <option value="Chaotic Dark" {{ variables.alignment=='Chaotic Dark' ? ' selected' }}>Chaotic Dark</option>
+      </select>
+    </div>
+    <div class="col-md-4">
+      <label for="type">Type</label>
+      <select name="type" class="form-control">
+        <option value="Beast" {{ variables.type=='Beast' ? ' selected' }}>Beast</option>
+        <option value="Construct" {{ variables.type=='Construct' ? ' selected' }}>Construct</option>
+        <option value="Droid" {{ variables.type=='Droid' ? ' selected' }}>Droid</option>
+        <option value="Humanoid" {{ variables.type=='Humanoid' ? ' selected' }}>Humanoid</option>
+        <option value="Force-Wielder" {{ variables.type=='Force-Wielder' ? ' selected' }}>Force-Wielder</option>
+      </select>
+    </div>
+  </div>
+  <div class="form-group sw5e-section">
+    <div class="form-row">
+      <div class="sw5e-input col-md-6">
+        <label for="armor">Armor Class</label>
+        <input type="text" name="armor" class="form-control" placeholder="Armor Class (optionally including type of armor)"
+          value="{{ variables.armor is defined ? variables.armor }}">
+      </div>
+      <div class="sw5e-input col-md-6">
+        <label for="hit_points">Hit Points</label>
+        <input type="text" name="hit_points" class="form-control" placeholder="Hit Points (e.g. 14([roll:3d6+5])"
+        value="{{ variables.hit_points is defined ? variables.hit_points }}">
+      </div>
+    </div>
+    <div class="sw5e-input">
+      <label for="speed">Movement Speeds</label>
+      <input type="text" name="speed" class="form-control" placeholder="All Speeds (e.g. '30 ft, 40ft fly')"
+      value="{{ variables.speed is defined ? variables.speed }}">
+    </div>
+  </div>
+  <div class="sw5e-section attributes-section">
+    <h4 class="sw5e-section-name">Statistics</h4>
+    <span class="description">Please input only the statistic. Modifiers are automatically determined</span>
+    <div class="form-row attribute-row">
+      <div class="attr-edit">
+        <label for="strength" class="attr-name">Strength</label>
+        <input type="number" class="form-control" name="strength" placeholder="Strength"
+          value="{{ variables.strength is defined ? variables.strength }}">
+      </div>
+      <div class="attr-edit">
+        <label for="dexterity" class="attr-name">Dexterity</label>
+        <input type="number" class="form-control" name="dexterity" placeholder="Dexterity"
+          value="{{ variables.dexterity is defined ? variables.dexterity }}">
+      </div>
+      <div class="attr-edit">
+        <label for="constitution" class="attr-name">Constitution</label>
+        <input type="number" class="form-control" name="constitution" placeholder="Constitution"
+          value="{{ variables.constitution is defined ? variables.constitution }}">
+      </div>
+      <div class="attr-edit">
+        <label for="intelligence" class="attr-name">Intelligence</label>
+        <input type="number" class="form-control" name="intelligence" placeholder="Intelligence"
+          value="{{ variables.intelligence is defined ? variables.intelligence }}">
+      </div>
+      <div class="attr-edit">
+        <label for="wisdom" class="attr-name">Wisdom</label>
+        <input type="number" class="form-control" name="wisdom" placeholder="Wisdom"
+          value="{{ variables.wisdom is defined ? variables.wisdom }}">
+      </div>
+      <div class="attr-edit">
+        <label for="charisma" class="attr-name">Charisma</label>
+        <input type="number" class="form-control" name="charisma" placeholder="Charisma"
+          value="{{ variables.charisma is defined ? variables.charisma }}">
+      </div>
+    </div>
+  </div>
+  <div class="sw5e-section">
+    <h4 class="sw5e-section-name">Overview</h4>
+    <div class="form-group">
+      <div class="minor-value">
+        <label for="skills">Skills</label>
+        <input type="text" class="form-control" name="skills" placeholder="Skill Bonuses (e.g. Atheletics +4)"
+          value="{{ variables.skills is defined ? variables.skills }}">
+      </div>
+      <div class="minor-value">
+        <label for="saving_throws">Saving Throws</label>
+        <input type="text" class="form-control" name="saving_throws" placeholder="Saving Throw Bonuses"
+          value="{{ variables.saving_throws is defined ? variables.saving_throws }}">
+      </div>
+      <div class="minor-value">
+        <label for="senses">Senses</label>
+        <input type="text" class="form-control" name="senses" placeholder="Any senses like darkvision"
+          value="{{ variables.senses is defined ? variables.senses }}">
+      </div>
+      <div class="minor-value">
+        <label for="languages">Languages</label>
+        <input type="text" class="form-control" name="languages" placeholder="Languages Known"
+          value="{{ variables.languages is defined ? variables.languages }}">
+      </div>
+      <div class="minor-value">
+        <label for="challenge">Challenge (and XP)</label>
+        <input type="text" class="form-control" name="challenge" placeholder="4 (550xp)"
+          value="{{ variables.challenge is defined ? variables.challenge }}">
+      </div>
+      <div class="form-row">
+        <div class="minor-value col-md-4">
+          <label for="damage_vulnerabilities">Damage Vulnerabilities</label>
+          <input type="text" class="form-control" name="damage_vulnerabilities" placeholder="Ion, Force"
+            value="{{ variables.damage_vulnerabilities is defined ? variables.damage_vulnerabilities }}">
+        </div>
+        <div class="minor-value col-md-4">
+          <label for="damage_resistances">Damage Resistances</label>
+          <input type="text" class="form-control" name="Psychic" placeholder="damage_resistances"
+            value="{{ variables.damage_resistances is defined ? variables.damage_resistances }}">
+        </div>
+        <div class="minor-value col-md-4">
+          <label for="damage_immunities">Damage Immunities</label>
+          <input type="text" class="form-control" name="damage_immunities" placeholder="Poison, Necrotic"
+            value="{{ variables.damage_immunities is defined ? variables.damage_immunities }}">
+        </div>
+        <div class="minor-value col-md-4">
+          <label for="condition_immunities">Condition Immunities</label>
+          <input type="text" class="form-control" name="condition_immunities" placeholder="Charm, Fear"
+            value="{{ variables.condition_immunities is defined ? variables.condition_immunities }}">
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="sw5e-section">
+    <h4 class="sw5e-section-name">Traits</h4>
+    <label for="traits">Passive traits (like pack tactics) that this foe benefits from</label>
+    <textarea class="form-control" rows="5" name="traits">{{ variables.traits is defined ? variables.traits }}</textarea>
+  </div>
+  <div class="sw5e-section">
+    <h4 class="sw5e-section-name">Actions</h4>
+    <label for="actions">Attacks or actions that the foe can take on their turn</label>
+    <textarea class="form-control" rows="5" name="actions">{{ variables.actions is defined ? variables.actions }}</textarea>
+  </div>
+  <div class="sw5e-section">
+    <h4 class="sw5e-section-name">Reactions</h4>
+    <label for="reactions">Any actions that the foe can take outside of their turn</label>
+    <textarea class="form-control" rows="5" name="reactions">{{ variables.reactions is defined ? variables.reactions }}</textarea>
+  </div>
+  <div class="sw5e-section">
+    <h4 class="sw5e-section-name">Legendary Actions</h4>
+    <textarea class="form-control" rows="5" name="legendary_actions">{{ variables.legendary_actions is defined ? variables.legendary_actions }}</textarea>
+  </div>
+  <div class="sw5e-section">
+    <h4 class="sw5e-section-name">Tactics</h4>
+    <label for="tactics">(Optional) This section is intended to help DMs intelligently run this creature in encounters.</label>
+    <textarea class="form-control" rows="5" name="tactics">{{ variables.tactics is defined ? variables.tactics }}</textarea>
+  </div>
+</div>

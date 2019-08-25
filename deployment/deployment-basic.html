@@ -1,0 +1,31 @@
+<div class="sw5e-block">
+	<h1 class="block-title">{{ variables.name }}</h1>
+	<hr class="separator" />
+	{% if variables.description is defined %}
+		<section class="feature-section">
+			<h1 class="section-title">Overview</h1>
+			<div class="section-content"> {{ variables.description}} </div>
+		</section>
+  {% endif %}
+  <dd> {{ variables.rank_table|ParseTable}} </dd>
+  <section class="feature-section">
+		<h2 class="section-title">Rank One Features</h2>
+		<div class="section-content"> {{ variables.rank_one}} </div>
+	</section>
+  <section class="feature-section">
+		<h2 class="section-title">Rank Two Features</h2>
+		<div class="section-content"> {{ variables.rank_two}} </div>
+	</section>
+  <section class="feature-section">
+		<h2 class="section-title">Rank Three Features</h2>
+		<div class="section-content"> {{ variables.rank_three}} </div>
+	</section>
+  <section class="feature-section">
+		<h2 class="section-title">Rank Four Features</h2>
+		<div class="section-content"> {{ variables.rank_four}} </div>
+	</section>
+  <section class="feature-section">
+		<h2 class="section-title">Rank Five Features</h2>
+		<div class="section-content"> {{ variables.rank_five}} </div>
+	</section>
+</div>

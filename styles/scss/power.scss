@@ -1,0 +1,50 @@
+.sw5e-block {
+  --primary: #afc6d6;
+  --redText: #c40f0f;
+  --primary-dark: #69b5d0;
+  --border-color: green;
+  --sub-border: purple;
+  --subtitle-color: slategray;
+}
+
+.sw5e-block {
+  background-color: var(--primary);
+  border: 1px solid var(--redText);
+  padding: 8pt;
+
+  .header {
+    .transparent-input {
+      font-size: 25px !important;
+      background-color: transparent !important;
+      border: none;
+
+    }
+  }
+
+  .sw5e-input-group {
+    input::placeholder {
+      color: black!important;
+      font-size: 1.3em;
+      line-height: 1.3em;
+      text-transform: uppercase;
+    
+  }
+
+  .separator {
+    border-width: 3px;
+    border-color: var(--redText);
+  }
+  .subheading {
+    font-size: 14px;
+  }
+  .description {
+    margin-top: 8px;
+  }
+  .power-name {
+    color: var(--redText);
+    margin-bottom: 0;
+    font-weight: 400;
+    text-transform: uppercase;
+  }
+}
+}

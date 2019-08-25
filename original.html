@@ -1,0 +1,642 @@
+{% extends 'RPGSRDBundle:Templates:base.html.twig' %}
+{% block body %}
+
+{% macro addSign( attr ) %}
+    {% import _self as macros %}
+	{% if attr > 0 %} 
+            {% set result = '+' ~ attr %} {% else %} {% set result =  attr %}
+        {% endif %}
+	[roll:1d20{{ result }}|{{ result }}]
+{% endmacro %}
+
+{% macro addProficiency( attrBonus, skillLevel, proficiencyBonus ) %}
+  {% import _self as macros %}
+  {% if  "Proficient" in skillLevel %}
+    {% set bonus = attrBonus + proficiencyBonus %}
+  {% elseif "Expert" in skillLevel %}
+    {% set bonus = attrBonus + proficiencyBonus + proficiencyBonus %}
+  {% else %}
+    {% set bonus = attrBonus %}
+  {% endif %}
+  {% if bonus > 0 %} 
+    {% set result = '+' ~ bonus %} 
+  {% else %}
+    {% set result =   bonus %}
+   {% endif %}
+   [roll:1d20{{ result }}|{{ result }}]
+{% endmacro %}
+
+
+{% macro getAttrModifier( attr ) %}
+  {% import _self as macros %}
+  {% if attr == 1 %} {% set mod = '-5' %} 
+    {% elseif attr == 2 %} {% set mod = '-4' %}
+    {% elseif attr == 3 %} {% set mod = '-4' %}
+    {% elseif attr == 4 %} {% set mod = '-3' %}
+    {% elseif attr == 5 %} {% set mod = '-3' %}
+    {% elseif attr == 6 %} {% set mod = '-2' %}
+    {% elseif attr == 7 %} {% set mod = '-2' %}
+    {% elseif attr == 8 %} {% set mod = '-1' %}
+    {% elseif attr == 9 %} {% set mod = '-1' %}
+    {% elseif attr == 10 %} {% set mod = '+0' %}
+    {% elseif attr == 11 %} {% set mod = '+0' %}
+    {% elseif attr == 12 %} {% set mod = '+1' %}
+    {% elseif attr == 13 %} {% set mod = '+1' %}
+    {% elseif attr == 14 %} {% set mod = '+2' %}
+    {% elseif attr == 15 %} {% set mod = '+2' %}
+    {% elseif attr == 16 %} {% set mod = '+3' %}
+    {% elseif attr == 17 %} {% set mod = '+3' %}
+    {% elseif attr == 18 %} {% set mod = '+4' %}
+    {% elseif attr == 19 %} {% set mod = '+4' %}
+    {% elseif attr == 20 %} {% set mod = '+5' %}
+    {% elseif attr == 21 %} {% set mod = '+5' %}
+    {% elseif attr == 22 %} {% set mod = '+6' %}
+    {% elseif attr == 23 %} {% set mod = '+6' %}
+    {% elseif attr == 24 %} {% set mod = '+7' %}
+    {% elseif attr == 25 %} {% set mod = '+7' %}
+    {% elseif attr == 26 %} {% set mod = '+8' %}
+    {% elseif attr == 27 %} {% set mod = '+8' %}
+    {% elseif attr == 28 %} {% set mod = '+9' %}
+    {% elseif attr == 29 %} {% set mod = '+9' %}
+    {% elseif attr == 30 %} {% set mod = '+10' %}
+  {% endif %}
+  {{mod|number_format}}
+{% endmacro %}
+
+
+{% macro attrModifier( attr, dice = '20', show = false ) %}
+    {% import _self as macros %}
+{% if attr == 1 %} {% set mod = '-5' %} 
+    {% elseif attr == 2 %} {% set mod = '-4' %}
+    {% elseif attr == 3 %} {% set mod = '-4' %}
+    {% elseif attr == 4 %} {% set mod = '-3' %}
+    {% elseif attr == 5 %} {% set mod = '-3' %}
+    {% elseif attr == 6 %} {% set mod = '-2' %}
+    {% elseif attr == 7 %} {% set mod = '-2' %}
+    {% elseif attr == 8 %} {% set mod = '-1' %}
+    {% elseif attr == 9 %} {% set mod = '-1' %}
+    {% elseif attr == 10 %} {% set mod = '+0' %}
+    {% elseif attr == 11 %} {% set mod = '+0' %}
+    {% elseif attr == 12 %} {% set mod = '+1' %}
+    {% elseif attr == 13 %} {% set mod = '+1' %}
+    {% elseif attr == 14 %} {% set mod = '+2' %}
+    {% elseif attr == 15 %} {% set mod = '+2' %}
+    {% elseif attr == 16 %} {% set mod = '+3' %}
+    {% elseif attr == 17 %} {% set mod = '+3' %}
+    {% elseif attr == 18 %} {% set mod = '+4' %}
+    {% elseif attr == 19 %} {% set mod = '+4' %}
+    {% elseif attr == 20 %} {% set mod = '+5' %}
+    {% elseif attr == 21 %} {% set mod = '+5' %}
+    {% elseif attr == 22 %} {% set mod = '+6' %}
+    {% elseif attr == 23 %} {% set mod = '+6' %}
+    {% elseif attr == 24 %} {% set mod = '+7' %}
+    {% elseif attr == 25 %} {% set mod = '+7' %}
+    {% elseif attr == 26 %} {% set mod = '+8' %}
+    {% elseif attr == 27 %} {% set mod = '+8' %}
+    {% elseif attr == 28 %} {% set mod = '+9' %}
+    {% elseif attr == 29 %} {% set mod = '+9' %}
+    {% elseif attr == 30 %} {% set mod = '+10' %}
+    {% endif %}
+    {% if  mod is defined  %}
+    	{% if show == false %}
+        	[roll:1d{{dice}}{{ mod }}|{{ mod }}] 
+    	{% else %}
+			[roll:1d{{dice}}{{ mod }}|1d{{dice}}{{mod}}] 
+    	{% endif %}
+    {% else %}   
+        [roll:1d20}|0]
+    {% endif %}
+{% endmacro %}
+{% import _self as macros %}
+<div class="system-dnd5e">
+  <div class="my-background">
+      <div class="row">
+          <div class="col-md-4">
+            <h1 class="player-name">{{ variables.name }}</h1>
+          </div>
+          <div class="col-md-8">
+            <div class="row">
+              <div class="col-md-3">
+                <span class="inputContent"
+                  >{{ variables.class }} {{ variables.level }}</span
+                >
+                <span class="inputLabel">Class & Level</span>
+              </div>
+              <div class="col-md-3 ">
+                <span class="inputContent">{{ variables.background }}</span>
+                <span class="inputLabel">Background</span>
+              </div>
+              <div class="col-md-3 ">
+                <span class="inputContent">{{ variables.race }}</span>
+                <span class="inputLabel">Race</span>
+              </div>
+              <div class="col-md-3 ">
+                <span class="inputContent">{{ variables.alignment }}</span>
+                <span class="inputLabel">Alignment</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <hr class="hr-dark" />
+        <div class="row">
+          <div class="col-md-4">
+            <div class="row">
+              <div class="col-md-4">
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="contentContainer contentContainer-attribute">
+                      <span class="inputLabel">Strength</span>
+                      <strong>{{ variables.strength }}</strong>
+                      <div class="subContainer">
+                        {{ macros.attrModifier(variables.strength) }}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="contentContainer contentContainer-attribute">
+                      <span class="inputLabel">Dexterity</span>
+                      <strong>{{ variables.dexterity }}</strong>
+                      <div class="subContainer">
+                        {{ macros.attrModifier(variables.dexterity) }}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="contentContainer contentContainer-attribute">
+                      <span class="inputLabel">constitution</span>
+                      <strong>{{ variables.constitution }}</strong>
+                      <div class="subContainer">
+                        {{ macros.attrModifier(variables.constitution) }}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="contentContainer contentContainer-attribute">
+                      <span class="inputLabel">intelligence</span>
+                      <strong>{{ variables.intelligence }}</strong>
+                      <div class="subContainer">
+                        {{ macros.attrModifier(variables.intelligence) }}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="contentContainer contentContainer-attribute">
+                      <span class="inputLabel">wisdom</span>
+                      <strong>{{ variables.wisdom }}</strong>
+                      <div class="subContainer">
+                        {{ macros.attrModifier(variables.wisdom) }}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="contentContainer contentContainer-attribute">
+                      <span class="inputLabel">charisma</span>
+                      <strong>{{ variables.charisma }}</strong>
+                      <div class="subContainer">
+                        {{ macros.attrModifier(variables.charisma) }}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+      
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="contentContainer contentContainer-attribute">
+                      <span class="inputLabel">Total Hit Dice</span>
+                      <strong>{{ variables.hitdicenumber }}</strong
+                      ><br />
+                      <span class="inputLabel">Hit Die</span>
+                      <strong
+                        >{{
+                          macros.attrModifier(
+                            variables.constitution,
+                            variables.hit_die_type,
+                            true
+                          )
+                        }}
+                      </strong>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-8">
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="contentContainer contentContainer-side">
+                      <strong class="pull-left">{{
+                        macros.addSign(variables.proficiency_bonus)
+                      }}</strong>
+                      <span class="inputLabel">proficiency bonus</span>
+                    </div>
+                  </div>
+                </div>
+      
+                {% if variables.passivewisdom is defined %}
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="contentContainer contentContainer-side">
+                      <strong class="pull-left">{{
+                        macros.addSign(variables.passive_perception)
+                      }}</strong>
+                      <span class="inputLabel">Passive perception</span>
+                    </div>
+                  </div>
+                </div>
+                {% endif %}
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="contentContainer contentContainer-standard">
+                      <table>
+                        <tr>
+                          <td class="col-md-2">
+                            {{ macros.addSign(variables.strength_save) }}
+                          </td>
+                          <td>Strength</td>
+                        </tr>
+                        <tr>
+                          <td class="col-md-2">
+                            {{ macros.addSign(variables.dexterity_save) }}
+                          </td>
+                          <td>Dexterity</td>
+                        </tr>
+                        <tr>
+                          <td class="col-md-2">
+                            {{ macros.addSign(variables.constitution_save) }}
+                          </td>
+                          <td>Constitution</td>
+                        </tr>
+                        <tr>
+                          <td class="col-md-2">
+                            {{ macros.addSign(variables.intelligence_save) }}
+                          </td>
+                          <td>Intelligence</td>
+                        </tr>
+                        <tr>
+                          <td class="col-md-2">
+                            {{ macros.addSign(variables.wisdom_save) }}
+                          </td>
+                          <td>Wisdom</td>
+                        </tr>
+                        <tr>
+                          <td class="col-md-2">
+                            {{ macros.addSign(variables.charisma_save) }}
+                          </td>
+                          <td>Charisma</td>
+                        </tr>
+                      </table>
+      
+                      <span class="inputLabel">saving throws</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="contentContainer contentContainer-standard">
+                      <table>
+                        <tr>
+                          <td class="col-md-2">
+                            {{
+                              macros.addProficiency(
+                                variables.strength_save,
+                                'None',
+                                variables.proficiency_bonus
+                              )
+                            }}
+                          </td>
+                          <td>Acrobatics</td>
+                        </tr>
+                        <tr>
+                          <td class="col-md-2">
+                            {{
+                              macros.addProficiency(
+                                variables.wisdom_save,
+                                variables.animal_handling_proficiency_level,
+                                variables.proficiency_bonus
+                              )
+                            }}
+                          </td>
+                          <td>Animal Handling</td>
+                        </tr>
+                        <tr>
+                          <td class="col-md-2">
+                            {{
+                              macros.addProficiency(
+                                variables.dexterity_save,
+                                variables.athletics_proficiency_level,
+                                variables.proficiency_bonus
+                              )
+                            }}
+                          </td>
+                          <td>Athletics</td>
+                        </tr>
+                        <tr>
+                          <td class="col-md-2">
+                            {{
+                              macros.addProficiency(
+                                variables.charisma_save,
+                                variables.deception_proficiency_level,
+                                variables.proficiency_bonus
+                              )
+                            }}
+                          </td>
+                          <td>Deception</td>
+                        </tr>
+                        <tr>
+                          <td class="col-md-2">
+                            {{
+                              macros.addProficiency(
+                                variables.wisdom_save,
+                                variables.insight_proficiency_level,
+                                variables.proficiency_bonus
+                              )
+                            }}
+                          </td>
+                          <td>Insight</td>
+                        </tr>
+                        <tr>
+                          <td class="col-md-2">
+                            {{
+                              macros.addProficiency(
+                                variables.charisma_save,
+                                variables.intimidation_proficiency_level,
+                                variables.proficiency_bonus
+                              )
+                            }}
+                          </td>
+                          <td>Intimidation</td>
+                        </tr>
+                        <tr>
+                          <td class="col-md-2">
+                            {{
+                              macros.addProficiency(
+                                variables.intelligence_save,
+                                variables.investigation_proficiency_level,
+                                variables.proficiency_bonus
+                              )
+                            }}
+                          </td>
+                          <td>Investigation</td>
+                        </tr>
+                        <tr>
+                          <td class="col-md-2">
+                            {{
+                              macros.addProficiency(
+                                variables.intelligence_save,
+                                variables.lore_proficiency_level,
+                                variables.proficiency_bonus
+                              )
+                            }}
+                          </td>
+                          <td>Lore</td>
+                        </tr>
+                        <tr>
+                          <td class="col-md-2">
+                            {{
+                              macros.addProficiency(
+                                variables.wisdom_save,
+                                variables.medicine_proficiency_level,
+                                variables.proficiency_bonus
+                              )
+                            }}
+                          </td>
+                          <td>Medicine</td>
+                        </tr>
+                        <tr>
+                          <td class="col-md-2">
+                            {{
+                              macros.addProficiency(
+                                variables.intelligence_save,
+                                variables.nature_proficiency_level,
+                                variables.proficiency_bonus
+                              )
+                            }}
+                          </td>
+                          <td>Nature</td>
+                        </tr>
+                        <tr>
+                          <td class="col-md-2">
+                            {{
+                              macros.addProficiency(
+                                variables.wisdom_save,
+                                variables.perception_proficiency_level,
+                                variables.proficiency_bonus
+                              )
+                            }}
+                          </td>
+                          <td>Perception</td>
+                        </tr>
+                        <tr>
+                          <td class="col-md-2">
+                            {{
+                              macros.addProficiency(
+                                variables.charisma_save,
+                                variables.performance_proficiency_level,
+                                variables.proficiency_bonus
+                              )
+                            }}
+                          </td>
+                          <td>Performance</td>
+                        </tr>
+                        <tr>
+                          <td class="col-md-2">
+                            {{
+                              macros.addProficiency(
+                                variables.charisma_save,
+                                variables.persuasion_proficiency_level,
+                                variables.proficiency_bonus
+                              )
+                            }}
+                          </td>
+                          <td>Persuasion</td>
+                        </tr>
+                        <tr>
+                          <td class="col-md-2">
+                            {{
+                              macros.addProficiency(
+                                variables.intelligence_save,
+                                variables.piloting_proficiency_level,
+                                variables.proficiency_bonus
+                              )
+                            }}
+                          </td>
+                          <td>Piloting</td>
+                        </tr>
+                        <tr>
+                          <td class="col-md-2">
+                            {{
+                              macros.addProficiency(
+                                variables.dexterity_save,
+                                variables.sleight_of_hand_proficiency_level,
+                                variables.proficiency_bonus
+                              )
+                            }}
+                          </td>
+                          <td>Sleight of Hands</td>
+                        </tr>
+                        <tr>
+                          <td class="col-md-2">
+                            {{
+                              macros.addProficiency(
+                                variables.dexterity_save,
+                                variables.stealth_proficiency_level,
+                                variables.proficiency_bonus
+                              )
+                            }}
+                          </td>
+                          <td>Stealth</td>
+                        </tr>
+                        <tr>
+                          <td class="col-md-2">
+                            {{
+                              macros.addProficiency(
+                                variables.wisdom_save,
+                                variables.survival_proficiency_level,
+                                variables.proficiency_bonus
+                              )
+                            }}
+                          </td>
+                          <td>Survival</td>
+                        </tr>
+                        <tr>
+                          <td class="col-md-2">
+                            {{
+                              macros.addProficiency(
+                                variables.intelligence_save,
+                                variables.technology_proficiency_level,
+                                variables.proficiency_bonus
+                              )
+                            }}
+                          </td>
+                          <td>Technology</td>
+                        </tr>
+                      </table>
+      
+                      <span class="inputLabel">skills</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="row">
+              <div class="col-md-6 col-sm-6">
+                <div class="contentContainer contentContainer-attribute">
+                  <strong>{{ variables.armor_class }}</strong
+                  ><br />
+                  <span class="inputLabel">AC</span>
+                </div>
+              </div>
+              <div class="col-md-6 col-sm-6">
+                <div class="contentContainer contentContainer-attribute">
+                  <strong>{{ variables.hit_points }}</strong
+                  ><br />
+                  <span class="inputLabel">Hit Points</span>
+                </div>
+              </div>
+              <div class="col-md-6 col-sm-6">
+                <div class="contentContainer contentContainer-attribute">
+                  <strong>{{ macros.attrModifier(variables.dexterity) }}</strong
+                  ><br />
+                  <span class="inputLabel">Initiative</span>
+                </div>
+              </div>
+              <div class="col-md-6 col-sm-6">
+                <div class="contentContainer contentContainer-attribute">
+                  <strong>{{ variables.speed }}</strong
+                  ><br />
+                  <span class="inputLabel">Speed</span>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="contentContainer contentContainer-standard">
+                  {{ variables.proficiencies | nl2br }}<br />
+                  <span class="inputLabel">Proficiences</span>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="contentContainer contentContainer-standard">
+                  {{ variables.attack_table | ParseTable }}
+                  <span class="inputLabel">Attacks</span>
+                </div>
+              </div>
+            </div>
+      
+            <div class="row">
+              <div class="col-md-12">
+                <div class="contentContainer contentContainer-standard">
+                  [block:38955]
+                  {{ variables.spellcasting | BBcode }}<br />
+                  <span class="inputLabel">Spellcasting</span>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="contentContainer contentContainer-standard">
+                  {{ variables.equipment | nl2br }}<br />
+                  <span class="inputLabel">Equipment</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="contentContainer contentContainer-standard">
+                  {{ variables.personality_traits | nl2br }}<br />
+                  <span class="inputLabel">Personality Traits</span>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="contentContainer contentContainer-standard">
+                  {{ variables.ideal | nl2br }}<br />
+                  <span class="inputLabel">Ideals</span>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="contentContainer contentContainer-standard">
+                  {{ variables.bonds | nl2br }}<br />
+                  <span class="inputLabel">Bonds</span>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="contentContainer contentContainer-standard">
+                  {{ variables.flaws | nl2br }}<br />
+                  <span class="inputLabel">Flaws</span>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="contentContainer contentContainer-standard">
+                  {{ variables.features | nl2br }}<br />
+                  <span class="inputLabel">Features & Traits</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+  </div>
+</div>
+{% endblock %}

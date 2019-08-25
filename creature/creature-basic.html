@@ -1,0 +1,176 @@
+{% macro attrModifier( attr, dice = '20', show = false ) %}
+  {% import _self as macros %}
+  {% set sign = attr >= 10 ? '+' : '-' %}
+  {% set mod = ((attr - 10) / 2) |round(0, 'floor') %}
+  {% if  mod is defined  %}
+    {% if show == false %}
+        [roll:1d{{dice}}{{attr >= 10 ? sign}}{{ mod }}|{{ attr >= 10 ? sign }}{{ mod }}] 
+    {% else %}
+      [roll:1d{{dice}}{{sign}}{{ mod }}|1d{{dice}}{{sign}}{{mod}}] 
+    {% endif %}
+  {% else %}   
+      [roll:1d20}|0]
+  {% endif %}
+{% endmacro %}
+
+{% import _self as macros %}
+
+<div class="sw5e-block">
+	<h1 class="name">{{ variables.name }}</h1>
+  <h4 class="subheading">
+    {{ variables.size }} {{ variables.type }}, {{ variables.alignment }}
+  </h4>
+  <hr class="separator" />
+  <div class="overview-block">
+    <span class="single-line-value">
+      <strong class="field-name">Armor Class:</strong>
+      {{ variables.armor }}
+    </span>
+    <span class="single-line-value">
+    <strong class="field-name">Hit Points:</strong>
+    {{ variables.hit_points }}
+  </span>
+  <span class="single-line-value">
+    <strong class="field-name">Speed:</strong>
+    {{ variables.speed }}
+  </span>
+  </div>
+  <div class="attributes-block flex-row">
+    <div class="attribute flex-list">
+      <span class="attr-name">
+        STR
+      </span>
+      <span class="attr-value">
+        {{ variables.strength }} {{ macros.attrModifier( variables.strength ) }}
+      </span>
+    </div>
+    <div class="attribute flex-list">
+      <span class="attr-name">
+        DEX
+      </span>
+      <span class="attr-value">
+        {{ variables.dexterity }} {{ macros.attrModifier( variables.dexterity ) }}
+      </span>
+    </div>
+    <div class="attribute flex-list">
+      <span class="attr-name">
+        CON
+      </span>
+      <span class="attr-value">
+        {{ variables.constitution }} {{ macros.attrModifier( variables.constitution ) }}
+      </span>
+    </div>
+    <div class="attribute flex-list">
+      <span class="attr-name">
+        INT
+      </span>
+      <span class="attr-value">
+        {{ variables.intelligence }} {{ macros.attrModifier( variables.intelligence ) }}
+      </span>
+    </div>
+    <div class="attribute flex-list">
+      <span class="attr-name">
+        WIS
+      </span>
+      <span class="attr-value">
+        {{ variables.wisdom }} {{ macros.attrModifier( variables.wisdom ) }}
+      </span>
+    </div>
+    <div class="attribute flex-list">
+      <span class="attr-name">
+        CHA
+      </span>
+      <span class="attr-value">
+        {{ variables.charisma }} {{ macros.attrModifier( variables.charisma ) }}
+      </span>
+    </div>
+  </div>
+  <div class="overview-block">
+    {% if variables.skills is defined and variables.skills|length > 0 %}
+      <span class="single-line-value">
+        <strong class="field-name">Skills:</strong>
+        {{ variables.skills }}
+      </span>
+    {% endif %}
+    {% if variables.saving_throws is defined and variables.saving_throws|length > 0 %}
+      <span class="single-line-value">
+        <strong class="field-name">Saving Throws:</strong>
+        {{ variables.saving_throws }}
+      </span>    
+    {% endif %}
+    {% if variables.damage_vulnerabilities is defined and variables.damage_vulnerabilities|length > 0 %}
+      <span class="single-line-value">
+        <strong class="field-name">Damage Vulnerabilities:</strong>
+        {{ variables.damage_vulnerabilities }}
+      </span>
+    {% endif %}
+    {% if variables.damage_resistances is defined and variables.damage_resistances|length > 0 %}
+      <span class="single-line-value">
+        <strong class="field-name">Damage Resistances:</strong>
+        {{ variables.damage_resistances }}
+      </span>
+    {% endif %}
+    {% if variables.damage_immunities is defined and variables.damage_immunities|length > 0 %}
+      <span class="single-line-value">
+        <strong class="field-name">Damage Immunities:</strong>
+        {{ variables.damage_immunities }}
+      </span>
+    {% endif %}
+    {% if variables.condition_immunities is defined and variables.condition_immunities|length > 0 %}
+      <span class="single-line-value">
+        <strong class="field-name">Condition Immunities:</strong>
+        {{ variables.condition_immunities }}
+      </span>
+    {% endif %}
+    {% if variables.senses is defined and variables.senses|length > 0 %}
+      <span class="single-line-value">
+        <strong class="field-name">Senses:</strong>
+        {{ variables.senses }}
+      </span>
+    {% endif %}
+    {% if variables.languages is defined and variables.languages|length > 0 %}
+      <span class="single-line-value">
+        <strong class="field-name">Languages:</strong>
+        {{ variables.languages }}
+      </span>
+    {% endif %}
+    {% if variables.challenge is defined and variables.challenge|length > 0 %}
+      <span class="single-line-value">
+        <strong class="field-name">Challenge:</strong>
+        {{ variables.challenge }}
+      </span>
+    {% endif %}
+  </div>
+  {% if variables.traits is defined and variables.traits|length > 0 %}
+  <div class="action-block">
+    <h4 class="action-name">Traits</h4>
+    <span>{{ variables.traits }}</span>
+  </div>
+  {% endif %}
+  {% if variables.actions is defined and variables.actions|length > 0 %}
+  <div class="action-block">
+    <h4 class="action-name">Actions</h4>
+    <span>{{ variables.actions }}</span>
+  </div>
+  {% endif %}
+  {% if variables.reactions is defined and variables.reactions|length > 0 %}
+  <div class="action-block">
+    <h4 class="action-name">Reactions</h4>
+    <span>{{ variables.reactions }}</span>
+  </div>
+  {% endif %}
+  {% if variables.legendary_actions is defined and variables.legendary_actions|length > 0 %}
+  <div class="action-block">
+    <h4 class="action-name">Legendary Actions</h4>
+    <p>{{ variables.name }} can take 3 legendary actions, choosing from the options below. Only one legendary action option can be used at a time and only at the end of another creature's turn. All spent legendary actions are regained at the start of its turn.</p>
+    <span>{{ variables.legendary_actions }}</span>
+  </div>
+  {% endif %}
+  {% if variables.legendary_actions is defined and variables.legendary_actions|length > 0 %}
+  <div class="action-block">
+    <h4 class="action-name">Battle Tactics</h4>
+    <p>Suggested tactics for using {{ variables.name }} in combat. <i>(These are simply suggestions for DMs to intelligently (and consistently) use this monster in their campaign.)</i></p>
+    <span>{{ variables.tactics }}</span>
+  </div>
+  {% endif %}
+</div>
