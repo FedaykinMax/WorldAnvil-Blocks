@@ -14,8 +14,15 @@ The repo is separated into folders for each Block Template in the Sw5e system. W
 
 There is also a *common* folder that contains the style sheets (in .scss formats which can be converted to CSS using the command `npm run sass:build` or `yarn run sass:build`) as well as common macros etc that are useful in many sheets.
 
+## Credits
+
+These templates build off of the work that Dimitris (founder of WorldAnvil) and Galiphile (author of the Star Wars 5e conversion). They both have put their sweat and tears into creating something awesome.
+
 ## Links
 
-* Conversion Subreddit
-* Conversion Discord
-* Conversion Website
+* [Star Wars 5e Subreddit](https://www.reddit.com/r/sw5e)
+* [Star Wars 5e Discord Server](https://discord.gg/zYcPYTu)
+* [Star Wars 5e Website](https://sw5e.com)
+* [World Anvil](https://www.worldanvil.com)
+* [World Anvil Subreddit](https://www.reddit.com/r/worldanvil)
+* [World Anvil Discord Server](https://discordapp.com/invite/WHuu4qH)
